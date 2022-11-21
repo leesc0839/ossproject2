@@ -17,9 +17,9 @@ def load_dataset(dataset_path):
 	return data_df_tmp
 
 def dataset_stat(dataset_df):
-	feature_size = len(dataset_df)
-	target_df = dataset_df.groupby('target').size()
-	return feature_size, target_df[0], target_df[1]
+    data_size, feature_size = dataset_df.shape
+    target_df = dataset_df.groupby('target').size()
+    return feature_size - 1, target_df[0], target_df[1]
 
 def split_dataset(dataset_df, testset_size):
 	x = dataset_df.drop(columns='target', axis=1)
